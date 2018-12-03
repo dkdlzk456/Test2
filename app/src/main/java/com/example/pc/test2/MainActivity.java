@@ -4,14 +4,19 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
     RadioGroup radioGourp1;
@@ -34,8 +39,17 @@ public class MainActivity extends AppCompatActivity {
         matchButton = findViewById(R.id.matchButton);
         matchButton.setOnClickListener(matchListener);
 
+        ImageButton imageButton = findViewById(R.id.dilogButton);
+        imageButton.setOnClickListener(imageButtonListener);
 
     }
+    View.OnClickListener imageButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+      Intent intent = new Intent(getBaseContext(), dilogActivity.class);
+      startActivity(intent);
+        }
+    };
 
 
     View.OnClickListener matchListener = new View.OnClickListener() {

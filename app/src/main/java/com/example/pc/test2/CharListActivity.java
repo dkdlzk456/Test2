@@ -27,8 +27,11 @@ import static com.example.pc.test2.G.CHAR_HOROS;
 public class CharListActivity extends AppCompatActivity {
 
     ListView charListView;
-    List<String> findNames;
-    ArrayAdapter<String> charAdapter;
+    //    List<String> findNames;
+//    ArrayAdapter<String> charAdapter;
+    List<CharacterItem> characterItems;
+    CharacterAdapter charAdapter;
+
     int matchBlood;
     int matchHoro;
     int matchGender;
@@ -51,8 +54,10 @@ public class CharListActivity extends AppCompatActivity {
 
 // 전달받은 매칭 정보로 캐릭터들을 찾아서 리스트 변수에 담아줌
 
-        findNames = findCharacters(matchGender, matchBlood, matchHoro, mathBlood2);
-        charAdapter = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_list_item_1, findNames);
+//        findNames = findCharacters(matchGender, matchBlood, matchHoro, mathBlood2);
+//        charAdapter = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_list_item_1, findNames);
+        characterItems = findCharacters(matchGender, matchBlood, matchHoro, mathBlood2);
+        charAdapter = new CharacterAdapter(getBaseContext(), R.layout.list_item_character, characterItems);
         charListView.setAdapter(charAdapter);
         charListView.setOnItemClickListener(charItemClickListener);
 
@@ -62,22 +67,39 @@ public class CharListActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-            String charName = findNames.get(i);
+//            String charName = findNames.get(i);
+            CharacterItem characterItem = characterItems.get(i);
+
             Intent intent = new Intent(getBaseContext(), CharInfoActivity.class);
-            intent.putExtra("charName", charName);
+            intent.putExtra("charName", characterItem.getName());
             startActivity(intent);
 
         }
 
     };
 
-public List<String> findCharacters(int matchGender, int matchBlood, int matchHoro, int mathBlood2) {
-        List<String> findNames = new ArrayList<>();
+//public List<String> findCharacters(int matchGender, int matchBlood, int matchHoro, int mathBlood2) {
+//        List<String> findNames = new ArrayList<>();
+//        for (int i = 0; i < G.CHAR_NAMES.length; i++) {
+//            if (matchGender == G.CHAR_GENDERS[i] && matchBlood == G.CHAR_BLOODS[i] && matchHoro == G.CHAR_HOROS[i] || matchGender == G.CHAR_GENDERS[i] && mathBlood2 == G.CHAR_BLOODS[i] && matchHoro == G.CHAR_HOROS[i]) {
+//                findNames.add(G.CHAR_NAMES[i]);
+//            }
+//        }
+//        return findNames;
+//    }
+//}
+
+    public List<CharacterItem> findCharacters(int matchGender, int matchBlood, int matchHoro, int mathBlood2) {
+        List<CharacterItem> characterItems = new ArrayList<>();
         for (int i = 0; i < G.CHAR_NAMES.length; i++) {
             if (matchGender == G.CHAR_GENDERS[i] && matchBlood == G.CHAR_BLOODS[i] && matchHoro == G.CHAR_HOROS[i] || matchGender == G.CHAR_GENDERS[i] && mathBlood2 == G.CHAR_BLOODS[i] && matchHoro == G.CHAR_HOROS[i]) {
-                findNames.add(G.CHAR_NAMES[i]);
+                CharacterItem characterItem = new CharacterItem();
+                characterItem.setTitle(G.CHAR_TITLE[i]);
+                characterItem.setName(G.CHAR_NAMES[i]);
+                characterItem.setGender(G.CHAR_GENDERS[i]);
+                characterItems.add(characterItem);
             }
         }
-        return findNames;
+        return characterItems;
     }
 }

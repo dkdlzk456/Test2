@@ -16,6 +16,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="@string/main"
+        android:gravity="center"
     android:textSize="10pt"
     android:textStyle="bold"
     />
@@ -79,7 +80,8 @@
 
             />
         </LinearLayout>
-        <ImageView
+        <ImageButton
+            android:id="@+id/dilogButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -107,8 +109,8 @@
     android:id="@+id/myMoth"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:hint="예: 1"
-
+    android:hint="          예: 1"
+android:background="@drawable/textbox"
     />
         <TextView
             android:layout_marginLeft="25pt"
@@ -123,7 +125,8 @@
             android:id="@+id/myDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="예: 21"
+            android:hint="         예: 21"
+            android:background="@drawable/textbox"
             />
     </LinearLayout>
 <RadioGroup
