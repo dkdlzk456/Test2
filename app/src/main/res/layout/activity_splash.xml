@@ -4,14 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CharListActivity"
-    android:background="@drawable/bak"
+    tools:context=".SplashActivity"
+    android:orientation="vertical"
+    android:background="@drawable/img1"
     >
-
-    <ListView
-        android:id="@+id/charListView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
 
 </LinearLayout>

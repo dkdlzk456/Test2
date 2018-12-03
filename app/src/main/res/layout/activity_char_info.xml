@@ -4,9 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CharInfoActivity">
-<TextView
+    tools:context=".CharInfoActivity"
+    android:orientation="vertical"
+    android:background="@drawable/bak"
+    >
+
+
+    <TextView
     android:id="@+id/charInfoTextView"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
+    android:layout_height="wrap_content"
+    android:textSize="10pt"
+    />
 </LinearLayout>
