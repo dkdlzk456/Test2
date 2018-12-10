@@ -2,6 +2,7 @@ package com.example.pc.test2;
 
 public class CharacterItem {
 
+    private int _id;
     private String title;
     private String name;
     private String height;
@@ -12,6 +13,14 @@ public class CharacterItem {
     private int horo;
     private int month;
     private int day;
+
+    public int get_id() {
+        return _id;
+    }
+
+    public void set_id(int _id) {
+        this._id = _id;
+    }
 
     public String getTitle() {
         return title;

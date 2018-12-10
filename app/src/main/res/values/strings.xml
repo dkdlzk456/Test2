@@ -1,11 +1,14 @@
 <resources>
-    <string name="app_name">캐릭터궁합</string>
+    <string name="app_name">A.N.I 궁.합.도</string>
     <string name="main">나와 캐릭터 간의 궁합도를 알아보자!</string>
-    <string name="tip">※혈액형이 없는 캐릭과는 불가능합니다.</string>
-    <string name="main_1">자신의 생일과 혈액형을 입력을 하면</string>
+    <string name="tip_1">※공식 설정상 생년월일 및 혈액형 설정 없거나 </string>
+    <string name="tip">특이한 혈액형인 캐릭터와는 대조 불가능합니다.</string>
+    <string name="main_1">자신의 생일(별자리)와 혈액형을 입력을 하면</string>
     <string name="main_2">가상 속 캐릭터와 궁합을 알 수 있다?!</string>
-    <string name="main_3">나와 궁합이 맞는 캐릭터는?!</string>
-    <string name="main_4">정보를 입력 시 나와 궁합 좋은 캐릭이 나옵니다.</string>
+    <string name="main_3">※같은 성별의 캐릭을 보고 싶다면 </string>
+    <string name="main_4">※성별을 바꿔서 체크하세요.</string>
     <string name="main_5">※옆에 있는 표를 참고하세요~</string>
-    <string name="tip_1">※공식 설정상</string>
+    <string name="email">문의하기</string>
+
+
 </resources>

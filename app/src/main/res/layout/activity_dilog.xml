@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".dilogActivity">
+    tools:context=".dilogActivity"
+    android:orientation="vertical"
+    >
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/gob"
+        android:src="@drawable/blood2"
         />
 
 </LinearLayout>

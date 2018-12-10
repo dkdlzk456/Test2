@@ -2,6 +2,7 @@ package com.example.pc.test2;
 
 import android.content.Intent;
 import android.os.Handler;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -18,7 +19,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
-public class MainActivity extends AppCompatActivity {
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
+public class MainActivity extends FragmentActivity {
     RadioGroup radioGourp1;
     RadioGroup radioGourp2;
     Button matchButton;
@@ -31,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     int Day;
     int j;
     int h;
-
+    private AdView mAdView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,15 +44,31 @@ public class MainActivity extends AppCompatActivity {
         matchButton = findViewById(R.id.matchButton);
         matchButton.setOnClickListener(matchListener);
 
+        ImageButton imageButton2 = findViewById(R.id.dilogButton2);
+        imageButton2.setOnClickListener(imageButtonListener2);
         ImageButton imageButton = findViewById(R.id.dilogButton);
         imageButton.setOnClickListener(imageButtonListener);
 
+        // Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713
+
+        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
     View.OnClickListener imageButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
       Intent intent = new Intent(getBaseContext(), dilogActivity.class);
       startActivity(intent);
+        }
+    };
+    View.OnClickListener imageButtonListener2 = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(getBaseContext(), dilog2Activity.class);
+            startActivity(intent);
         }
     };
 
@@ -80,19 +101,30 @@ public class MainActivity extends AppCompatActivity {
                 int myHoro = findHoro(Moth, Day);
                 int matchGender = matchGender(myGender);
                 int matchBlood = matchBlood(myBlood);
-                int matchHoro = matchHoro(myHoro);
+                final int matchHoro = matchHoro(myHoro);
                 int mathBlood2 = mathBlood2(myBlood2);
-
+                 int matchHoro2 = matchHoro2(myHoro);
+                 int matchHoro3 = matchHoro3(myHoro);
 
                if(Moth != 0 && Moth <= 12 && Moth > 0 ) {
                    if(Day > 0 && Day !=0 && Day <= 31) {
                        if(i >=0 && i < 4 || h >= 0 && h < 4) {
-                           Intent intent = new Intent(getBaseContext(), CharListActivity.class);
+                           final Intent intent = new Intent(getBaseContext(), CharListActivity.class);
                            intent.putExtra("matchGender", matchGender);
                            intent.putExtra("matchBlood", matchBlood);
-                           intent.putExtra("matchHoro", matchHoro);
                            intent.putExtra("mathBlood2", mathBlood2);
+                           intent.putExtra("matchHoro", matchHoro);
+                           intent.putExtra("matchHoro2",matchHoro2);
+                           intent.putExtra("matchHoro3",matchHoro3);
                            startActivity(intent);
+                           Handler delayHandler = new Handler();
+                           delayHandler.postDelayed(new Runnable() {
+                               @Override
+                               public void run() {
+                                   Log.d("matchHoro", String.valueOf(matchHoro));
+                               }
+                           }, 3000);
+
                        }
                        else
                            Toast.makeText(getBaseContext(), "입력이 잘못 되었습니다.",Toast.LENGTH_LONG).show();
@@ -115,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         return j;
     }
 
-    // 궁합도 두번쨰 순위
+    // 혈액형 두번째 비교
     public int mathBlood2(int blood2) {
         if (radioGourp1.getCheckedRadioButtonId() == R.id.genderMan) {
             if (radioGourp2.getCheckedRadioButtonId() == R.id.Abutton) {
@@ -149,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
         return 0;
     }
 
-    //궁합도 첫번쨰 순위
+    //혈액형 첫번째 비교
     public int matchBlood(int blood) {
         if (radioGourp1.getCheckedRadioButtonId() == R.id.genderMan) {
             if (radioGourp2.getCheckedRadioButtonId() == R.id.Abutton) {
@@ -225,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
             return G.SAGITTARIUS;
         } else return 0;
     }
-    // 별자리로 길한 궁합 찾기
+    // 별자리로 길한 궁합 찾기 첫번째 비교
 
     public int matchHoro(int horoscope) {
 
@@ -257,5 +289,66 @@ public class MainActivity extends AppCompatActivity {
         }
         return 0;
     }
+    // 별자리로 길한 궁합 찾기 두번째 비교
+    public int matchHoro2(int horoscope) {
 
+        switch (horoscope) {
+            case G.CAPRICORN:
+                return G.TAURUS;
+            case G.AQUARIUS:
+                return G.AQUARIUS;
+            case G.PISCES:
+                return G.SCORPIO;
+            case G.ARIES:
+                return G.SAGITTARIUS;
+            case G.TAURUS:
+                return G.VIRGO;
+            case G.GEMINI:
+                return G.LIBRA;
+            case G.CANCER:
+                return G.SCORPIO;
+            case G.LEO:
+                return G.SAGITTARIUS;
+            case G.VIRGO:
+                return G.CAPRICORN;
+            case G.LIBRA:
+                return G.GEMINI;
+            case G.SCORPIO:
+                return G.CANCER;
+            case G.SAGITTARIUS:
+                return G.ARIES;
+        }
+        return 0;
+    }
+    // 별자리로 길한 궁합 찾기 세번째 비교
+    public int matchHoro3(int horoscope) {
+
+        switch (horoscope) {
+            case G.CAPRICORN:
+                return G.CAPRICORN;
+            case G.AQUARIUS:
+                return G.LIBRA;
+            case G.PISCES:
+                return G.PISCES;
+            case G.ARIES:
+                return G.LEO;
+            case G.TAURUS:
+                return G.TAURUS;
+            case G.GEMINI:
+                return G.GEMINI;
+            case G.CANCER:
+                return G.CANCER;
+            case G.LEO:
+                return G.LEO;
+            case G.VIRGO:
+                return G.VIRGO;
+            case G.LIBRA:
+                return G.LIBRA;
+            case G.SCORPIO:
+                return G.SCORPIO;
+            case G.SAGITTARIUS:
+                return G.SAGITTARIUS;
+        }
+        return 0;
+    }
 }

@@ -1,10 +1,11 @@
 package com.example.pc.test2;
 
 import android.content.Intent;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +24,7 @@ public class SplashActivity extends AppCompatActivity {
             super.run();
 
             try {
-                Thread.sleep(   2000);
+                Thread.sleep(   5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

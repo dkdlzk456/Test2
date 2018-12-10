@@ -1,9 +1,10 @@
 package com.example.pc.test2;
 
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class dilogActivity extends AppCompatActivity {
+public class dilogActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
